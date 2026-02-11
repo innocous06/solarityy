@@ -23,3 +23,12 @@ export const calculateSolarROI = (inputData, solarData, electricityRate = 8.0) =
   const firstYearSavings = Math.min(annualProductionKWh * electricityRate, annualElectricBill);
   const simplePaybackYears = netSystemCost / firstYearSavings;
   let lifetimeSavings = 0;
+  let cumulativeProduction = 0;
+  const savingsTimeline = [];
+  for (let year = 1; year <= SYSTEM_LIFETIME; year++) {
+    const degradationFactor = Math.pow(1 - SYSTEM_DEGRADATION, year - 1);
+    const yearlyProduction = annualProductionKWh * degradationFactor;
+    const yearlyInflationRate = Math.pow(1 + INFLATION_RATE, year - 1);
+    const yearlyRate = electricityRate * yearlyInflationRate;
+    const yearlySavings = yearlyProduction * yearlyRate;
+    lifetimeSavings += yearlySavings;
