@@ -14,3 +14,12 @@ export const calculateSolarROI = (inputData, solarData, electricityRate = 8.0) =
   const roofAreaMeters = roofArea * SQ_FT_TO_SQ_M;
   const systemCapacityKW = (roofAreaMeters * WATTS_PER_SQ_M * PANEL_EFFICIENCY) / 1000;
   const annualProductionKWh = solarData?.ac_annual || systemCapacityKW * 1450;
+  const systemCostBeforeIncentives = systemCapacityKW * 1000 * COST_PER_WATT;
+  const subsidyAmount = systemCostBeforeIncentives * GOVT_SUBSIDY;
+  const netSystemCost = systemCostBeforeIncentives - subsidyAmount;
+  const annualElectricBill = monthlyBill * 12;
+  const currentAnnualUsageKWh = annualElectricBill / electricityRate;
+  const percentageOffset = Math.min((annualProductionKWh / currentAnnualUsageKWh) * 100, 100);
+  const firstYearSavings = Math.min(annualProductionKWh * electricityRate, annualElectricBill);
+  const simplePaybackYears = netSystemCost / firstYearSavings;
+  let lifetimeSavings = 0;
