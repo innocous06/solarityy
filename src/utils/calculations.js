@@ -50,3 +50,16 @@ export const calculateSolarROI = (inputData, solarData, electricityRate = 8.0) =
     panelCount: Math.ceil(systemCapacityKW * 1000 / 400),
     annualProduction: Math.round(annualProductionKWh),
     systemCostBefore: Math.round(systemCostBeforeIncentives),
+    federalIncentive: Math.round(subsidyAmount),
+    netCost: Math.round(netSystemCost),
+    percentageOffset: Math.round(percentageOffset),
+    monthlySavings: Math.round(monthlySavings),
+    annualSavings: Math.round(firstYearSavings),
+    paybackPeriod: simplePaybackYears.toFixed(1),
+    lifetimeSavings: Math.round(netLifetimeSavings),
+    co2Offset: Math.round(lifetimeCO2Offset),
+    breakEvenYear: Math.ceil(simplePaybackYears),
+    savingsTimeline,
+    solarRadiation: solarData?.solrad_annual?.toFixed(1) || '5.5',
+    capacityFactor: solarData?.capacity_factor?.toFixed(1) || '16.5'
+  };
