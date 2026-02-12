@@ -32,3 +32,21 @@ export const calculateSolarROI = (inputData, solarData, electricityRate = 8.0) =
     const yearlyRate = electricityRate * yearlyInflationRate;
     const yearlySavings = yearlyProduction * yearlyRate;
     lifetimeSavings += yearlySavings;
+    cumulativeProduction += yearlyProduction;
+    savingsTimeline.push({
+      year: year,
+      cumulativeSavings: Math.round(lifetimeSavings - netSystemCost),
+      savings: Math.round(lifetimeSavings),
+      cost: netSystemCost
+    });
+  }
+  const netLifetimeSavings = lifetimeSavings - netSystemCost;
+  const lifetimeCO2Offset = (cumulativeProduction * CO2_PER_KWH) / 1000;
+  const monthlySavings = firstYearSavings / 12;
+  const treesEquivalent = Math.round((annualProductionKWh * CO2_PER_KWH) / 21.7);
+  return {
+    treesEquivalent,
+    systemSize: systemCapacityKW.toFixed(2),
+    panelCount: Math.ceil(systemCapacityKW * 1000 / 400),
+    annualProduction: Math.round(annualProductionKWh),
+    systemCostBefore: Math.round(systemCostBeforeIncentives),
