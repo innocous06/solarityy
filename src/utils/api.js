@@ -1,8 +1,6 @@
 import axios from 'axios';
-
 const NREL_API_KEY = import.meta.env.VITE_NREL_API_KEY || 'DEMO_KEY';
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
-
 export const getCoordinates = async (locationQuery) => {
   if (!MAPBOX_TOKEN || MAPBOX_TOKEN === 'your_mapbox_token_here') {
     console.warn('Mapbox token not configured, using default coordinates');
@@ -12,7 +10,6 @@ export const getCoordinates = async (locationQuery) => {
       placeName: locationQuery || 'Delhi, India'
     };
   }
-
   try {
     const response = await axios.get(
       `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(locationQuery)}.json`,
@@ -25,23 +22,19 @@ export const getCoordinates = async (locationQuery) => {
         }
       }
     );
-
     if (response.data.features && response.data.features.length > 0) {
       const [longitude, latitude] = response.data.features[0].center;
       const placeName = response.data.features[0].place_name;
       return { latitude, longitude, placeName };
     }
-
     throw new Error('Location not found');
   } catch (error) {
     console.error('Geocoding error:', error);
     throw new Error('Could not find location. Try entering city and state.');
   }
 };
-
 export const searchLocations = async (query) => {
   if (!query || query.length < 2) return [];
-  
   if (!MAPBOX_TOKEN || MAPBOX_TOKEN === 'your_mapbox_token_here') {
     const indianCities = [
       'Mumbai, Maharashtra',
@@ -60,7 +53,6 @@ export const searchLocations = async (query) => {
       .slice(0, 5)
       .map(city => ({ name: city, id: city }));
   }
-
   try {
     const response = await axios.get(
       `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json`,
@@ -73,7 +65,6 @@ export const searchLocations = async (query) => {
         }
       }
     );
-
     return response.data.features.map(feature => ({
       name: feature.place_name,
       id: feature.id
@@ -83,7 +74,6 @@ export const searchLocations = async (query) => {
     return [];
   }
 };
-
 export const getSolarData = async (latitude, longitude, systemCapacity, tilt = 20) => {
   try {
     const response = await axios.get(
@@ -102,11 +92,9 @@ export const getSolarData = async (latitude, longitude, systemCapacity, tilt = 2
         }
       }
     );
-
     return response.data.outputs;
   } catch (error) {
     console.error('NREL API error:', error);
-    
     const fallbackProduction = systemCapacity * 1450;
     return {
       ac_annual: fallbackProduction,
@@ -115,7 +103,6 @@ export const getSolarData = async (latitude, longitude, systemCapacity, tilt = 2
     };
   }
 };
-
 export const getElectricityRate = (state) => {
   const rates = {
     'Maharashtra': 9.5,
@@ -128,6 +115,5 @@ export const getElectricityRate = (state) => {
     'Rajasthan': 7.5,
     'default': 8.0
   };
-
   return rates[state] || rates.default;
 };
