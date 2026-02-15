@@ -3,7 +3,7 @@ import {
   Sun, Home, BarChart3, Zap, 
   Leaf, IndianRupee, Battery, ArrowRight, CheckCircle2, 
   User, TrendingUp, Download, Share2, AlertCircle, Loader2,
-  Info, Settings, MapPin, Clock, Trash2
+  Info, Clock, Trash2, MapPin
 } from 'lucide-react';
 import { calculateSolarROI, validateFormData } from './utils/calculations';
 import { getCoordinates, getSolarData, getElectricityRate } from './utils/api';
@@ -219,7 +219,7 @@ const AboutView = () => (
           <Sun size={48} className="fill-white" />
         </div>
         <div>
-          <h1 className="text-5xl font-black">SolarSnap</h1>
+          <h1 className="text-5xl font-black">Solarity</h1>
           <p className="text-green-100 text-lg mt-2">Solar Decisions Made Simple</p>
         </div>
       </div>
@@ -299,8 +299,9 @@ const AboutView = () => (
     </div>
 
     <div className="bg-gray-900 p-8 rounded-[2.5rem] text-white text-center">
-      <p className="text-gray-400 mb-2">Built for Hackathon 2026</p>
-      <p className="font-bold">SolarSnap Team • EcoTech Domain</p>
+      <p className="text-gray-400 text-sm mb-2">Built for Hackathon 2026</p>
+      <p className="font-bold text-lg">Built by Axilla</p>
+      <p className="text-gray-400 text-sm mt-1">Domain: EcoTech • Project: Solarity</p>
     </div>
   </div>
 );
@@ -319,7 +320,7 @@ function App() {
   const [locationData, setLocationData] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
   const [history, setHistory] = useState(() => {
-    const saved = localStorage.getItem('solarSnapHistory');
+    const saved = localStorage.getItem('solarityHistory');
     return saved ? JSON.parse(saved) : [];
   });
 
@@ -332,7 +333,7 @@ function App() {
     };
     const updatedHistory = [newEntry, ...history].slice(0, 10);
     setHistory(updatedHistory);
-    localStorage.setItem('solarSnapHistory', JSON.stringify(updatedHistory));
+    localStorage.setItem('solarityHistory', JSON.stringify(updatedHistory));
   };
 
   const loadFromHistory = (item) => {
@@ -345,7 +346,7 @@ function App() {
   const deleteFromHistory = (index) => {
     const updatedHistory = history.filter((_, i) => i !== index);
     setHistory(updatedHistory);
-    localStorage.setItem('solarSnapHistory', JSON.stringify(updatedHistory));
+    localStorage.setItem('solarityHistory', JSON.stringify(updatedHistory));
   };
 
   const handleCalculate = async () => {
@@ -394,11 +395,11 @@ function App() {
   };
 
   const handleShare = () => {
-    const shareText = `Check out my solar analysis! System Size: ${results.systemSize}kW, Payback: ${results.paybackPeriod} years, Lifetime Savings: ₹${results.lifetimeSavings.toLocaleString()}`;
+    const shareText = `Check out my Solarity solar analysis! System Size: ${results.systemSize}kW, Payback: ${results.paybackPeriod} years, Lifetime Savings: ₹${results.lifetimeSavings.toLocaleString()}`;
     
     if (navigator.share) {
       navigator.share({
-        title: 'My Solar ROI Analysis',
+        title: 'My Solarity Solar ROI Analysis',
         text: shareText,
       }).catch(err => console.log('Share failed:', err));
     } else {
@@ -415,7 +416,7 @@ function App() {
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
           <div>
             <h1 className="text-5xl font-black text-gray-900 tracking-tighter mb-2">
-              SolarSnap<span className="text-green-600">.</span>
+              Solarity<span className="text-green-600">.</span>
             </h1>
             <p className="text-gray-400 font-medium text-lg">Know your solar worth instantly</p>
           </div>
