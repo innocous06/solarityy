@@ -6,9 +6,9 @@ const SavingsChart = ({ data, paybackPeriod }) => {
     if (active && payload && payload.length) {
       const savings = payload[0].value;
       return (
-        <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100">
-          <p className="text-sm font-bold text-gray-600">Year {payload[0].payload.year}</p>
-          <p className="text-lg font-black text-green-600">
+        <div className="bg-white p-3 sm:p-4 rounded-xl shadow-lg border border-gray-100">
+          <p className="text-xs sm:text-sm font-bold text-gray-600">Year {payload[0].payload.year}</p>
+          <p className="text-base sm:text-lg font-black text-green-600">
             ₹{savings.toLocaleString()}
           </p>
           <p className="text-xs text-gray-400 mt-1">
@@ -21,65 +21,67 @@ const SavingsChart = ({ data, paybackPeriod }) => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-[2.5rem] shadow-sm">
-      <div className="mb-6">
-        <h3 className="text-2xl font-black text-gray-900 mb-2">Cumulative Savings</h3>
-        <p className="text-gray-500 text-sm">25-year projection with energy cost inflation</p>
+    <div className="bg-white p-4 sm:p-6 md:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-sm">
+      <div className="mb-4 sm:mb-6">
+        <h3 className="text-xl sm:text-2xl font-black text-gray-900 mb-2">Cumulative Savings</h3>
+        <p className="text-gray-500 text-xs sm:text-sm">25-year projection with energy cost inflation</p>
       </div>
       
-      <ResponsiveContainer width="100%" height={350}>
+      <ResponsiveContainer width="100%" height={300} className="sm:h-[350px]">
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
           <XAxis 
             dataKey="year" 
-            label={{ value: 'Years', position: 'insideBottom', offset: -5 }}
+            label={{ value: 'Years', position: 'insideBottom', offset: -5, fontSize: 12 }}
             stroke="#9ca3af"
+            tick={{ fontSize: 12 }}
           />
           <YAxis 
-            label={{ value: 'Net Savings (₹)', angle: -90, position: 'insideLeft' }}
+            label={{ value: 'Net Savings (₹)', angle: -90, position: 'insideLeft', fontSize: 12 }}
             stroke="#9ca3af"
+            tick={{ fontSize: 12 }}
             tickFormatter={(value) => `₹${(value / 100000).toFixed(0)}L`}
           />
           <Tooltip content={<CustomTooltip />} />
-          <Legend />
+          <Legend wrapperStyle={{ fontSize: '14px' }} />
           <ReferenceLine 
             y={0} 
             stroke="#ef4444" 
             strokeDasharray="5 5" 
-            label={{ value: 'Break Even', position: 'insideTopLeft', fill: '#ef4444', fontSize: 12, fontWeight: 'bold' }}
+            label={{ value: 'Break Even', position: 'insideTopLeft', fill: '#ef4444', fontSize: 11, fontWeight: 'bold' }}
           />
           <ReferenceLine 
             x={parseFloat(paybackPeriod)} 
             stroke="#f59e0b" 
             strokeDasharray="5 5"
-            label={{ value: `${paybackPeriod} years`, position: 'top', fill: '#f59e0b', fontSize: 12, fontWeight: 'bold' }}
+            label={{ value: `${paybackPeriod} years`, position: 'top', fill: '#f59e0b', fontSize: 11, fontWeight: 'bold' }}
           />
           <Line 
             type="monotone" 
             dataKey="cumulativeSavings" 
             stroke="#16a34a" 
-            strokeWidth={3} 
+            strokeWidth={2} 
             name="Net Savings"
             dot={false}
-            activeDot={{ r: 8 }}
+            activeDot={{ r: 6 }}
           />
         </LineChart>
       </ResponsiveContainer>
 
-      <div className="mt-6 grid grid-cols-3 gap-4">
-        <div className="text-center p-4 bg-green-50 rounded-2xl">
+      <div className="mt-4 sm:mt-6 grid grid-cols-3 gap-3 sm:gap-4">
+        <div className="text-center p-3 sm:p-4 bg-green-50 rounded-xl sm:rounded-2xl">
           <p className="text-xs text-gray-500 font-bold uppercase">Break Even</p>
-          <p className="text-2xl font-black text-green-600">{paybackPeriod} yrs</p>
+          <p className="text-xl sm:text-2xl font-black text-green-600">{paybackPeriod} yrs</p>
         </div>
-        <div className="text-center p-4 bg-gray-50 rounded-2xl">
+        <div className="text-center p-3 sm:p-4 bg-gray-50 rounded-xl sm:rounded-2xl">
           <p className="text-xs text-gray-500 font-bold uppercase">Year 10</p>
-          <p className="text-2xl font-black text-gray-800">
+          <p className="text-xl sm:text-2xl font-black text-gray-800">
             ₹{data[9]?.cumulativeSavings ? (data[9].cumulativeSavings / 100000).toFixed(1) : '0'}L
           </p>
         </div>
-        <div className="text-center p-4 bg-gray-50 rounded-2xl">
+        <div className="text-center p-3 sm:p-4 bg-gray-50 rounded-xl sm:rounded-2xl">
           <p className="text-xs text-gray-500 font-bold uppercase">Year 25</p>
-          <p className="text-2xl font-black text-gray-800">
+          <p className="text-xl sm:text-2xl font-black text-gray-800">
             ₹{data[24]?.cumulativeSavings ? (data[24].cumulativeSavings / 100000).toFixed(1) : '0'}L
           </p>
         </div>
