@@ -1,6 +1,5 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine, ResponsiveContainer } from 'recharts';
-
 const SavingsChart = ({ data, paybackPeriod }) => {
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
@@ -19,14 +18,12 @@ const SavingsChart = ({ data, paybackPeriod }) => {
     }
     return null;
   };
-
   return (
     <div className="bg-white p-4 sm:p-6 md:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-sm">
       <div className="mb-4 sm:mb-6">
         <h3 className="text-xl sm:text-2xl font-black text-gray-900 mb-2">Cumulative Savings</h3>
         <p className="text-gray-500 text-xs sm:text-sm">25-year projection with energy cost inflation</p>
       </div>
-      
       <ResponsiveContainer width="100%" height={300} className="sm:h-[350px]">
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -67,7 +64,6 @@ const SavingsChart = ({ data, paybackPeriod }) => {
           />
         </LineChart>
       </ResponsiveContainer>
-
       <div className="mt-4 sm:mt-6 grid grid-cols-3 gap-3 sm:gap-4">
         <div className="text-center p-3 sm:p-4 bg-green-50 rounded-xl sm:rounded-2xl">
           <p className="text-xs text-gray-500 font-bold uppercase">Break Even</p>
@@ -89,5 +85,4 @@ const SavingsChart = ({ data, paybackPeriod }) => {
     </div>
   );
 };
-
 export default SavingsChart;
