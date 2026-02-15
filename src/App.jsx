@@ -10,7 +10,6 @@ import { getCoordinates, getSolarData, getElectricityRate } from './utils/api';
 import LocationSearch from './components/LocationSearch';
 import SavingsChart from './components/SavingsChart';
 import CostBreakdown from './components/CostBreakdown';
-
 const Sidebar = ({ activeView, setActiveView, isMobileMenuOpen, setIsMobileMenuOpen }) => {
   const menuItems = [
     { id: 'home', icon: Home, label: 'Calculator' },
@@ -18,16 +17,12 @@ const Sidebar = ({ activeView, setActiveView, isMobileMenuOpen, setIsMobileMenuO
     { id: 'compare', icon: BarChart3, label: 'Compare' },
     { id: 'about', icon: Info, label: 'About' },
   ];
-
   const handleMenuClick = (id) => {
     setActiveView(id);
     setIsMobileMenuOpen(false);
   };
-
   return (
-    <>
-      {/* Desktop Sidebar */}
-      <div className="hidden md:flex flex-col items-center py-8 w-24 bg-white h-screen fixed left-0 top-0 z-10 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
+    <><div className="hidden md:flex flex-col items-center py-8 w-24 bg-white h-screen fixed left-0 top-0 z-10 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
         <div className="p-3 bg-green-50 rounded-2xl mb-12 text-green-600">
           <Sun size={32} className="fill-green-600" />
         </div>
@@ -50,18 +45,12 @@ const Sidebar = ({ activeView, setActiveView, isMobileMenuOpen, setIsMobileMenuO
             </button>
           ))}
         </div>
-      </div>
-
-      {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
+      </div>{isMobileMenuOpen && (
         <div 
           className="fixed inset-0 bg-black/50 z-40 md:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         />
-      )}
-
-      {/* Mobile Sidebar */}
-      <div className={`fixed top-0 left-0 h-full w-64 bg-white z-50 md:hidden transform transition-transform duration-300 ease-in-out ${
+      )}<div className={`fixed top-0 left-0 h-full w-64 bg-white z-50 md:hidden transform transition-transform duration-300 ease-in-out ${
         isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
         <div className="p-6">
@@ -79,7 +68,6 @@ const Sidebar = ({ activeView, setActiveView, isMobileMenuOpen, setIsMobileMenuO
               <X size={24} className="text-gray-600" />
             </button>
           </div>
-          
           <nav className="space-y-2">
             {menuItems.map((item) => (
               <button
@@ -101,7 +89,6 @@ const Sidebar = ({ activeView, setActiveView, isMobileMenuOpen, setIsMobileMenuO
     </>
   );
 };
-
 const MetricCard = ({ icon: Icon, label, value, subtext, colorClass }) => (
   <div className={`p-4 sm:p-6 md:p-6 rounded-[2rem] flex flex-col justify-between transition-all hover:scale-[1.02] duration-300 ${colorClass} min-h-[160px] sm:min-h-[180px] shadow-sm`}>
     <div className="flex justify-between items-start">
@@ -116,7 +103,6 @@ const MetricCard = ({ icon: Icon, label, value, subtext, colorClass }) => (
     </div>
   </div>
 );
-
 const InputGroup = ({ label, value, onChange, prefix, suffix, type = "number", placeholder, error }) => (
   <div className="flex flex-col gap-3">
     <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">{label}</label>
@@ -148,13 +134,11 @@ const InputGroup = ({ label, value, onChange, prefix, suffix, type = "number", p
     )}
   </div>
 );
-
 const HistoryView = ({ history, onLoad, onDelete }) => (
   <div className="space-y-4 animate-fade-in">
     <div className="bg-white p-4 sm:p-6 md:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-lg">
       <h2 className="text-2xl sm:text-3xl font-black text-gray-900 mb-2">Calculation History</h2>
       <p className="text-gray-500 text-sm sm:text-base mb-4 sm:mb-6">View and manage your previous solar calculations</p>
-      
       {history.length === 0 ? (
         <div className="text-center py-8 sm:py-12">
           <Clock size={40} className="sm:w-12 sm:h-12 text-gray-300 mx-auto mb-3 sm:mb-4" />
@@ -211,13 +195,11 @@ const HistoryView = ({ history, onLoad, onDelete }) => (
     </div>
   </div>
 );
-
 const CompareView = ({ history }) => (
   <div className="space-y-4 animate-fade-in">
     <div className="bg-white p-4 sm:p-6 md:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-lg">
       <h2 className="text-2xl sm:text-3xl font-black text-gray-900 mb-2">Compare Calculations</h2>
       <p className="text-gray-500 text-sm sm:text-base mb-4 sm:mb-6">Side-by-side comparison of your solar analyses</p>
-      
       {history.length < 2 ? (
         <div className="text-center py-8 sm:py-12">
           <BarChart3 size={40} className="sm:w-12 sm:h-12 text-gray-300 mx-auto mb-3 sm:mb-4" />
@@ -265,7 +247,6 @@ const CompareView = ({ history }) => (
     </div>
   </div>
 );
-
 const AboutView = () => (
   <div className="space-y-4 sm:space-y-6 animate-fade-in">
     <div className="bg-gradient-to-br from-green-600 to-emerald-600 p-6 sm:p-8 md:p-12 rounded-[2rem] sm:rounded-[2.5rem] text-white shadow-xl">
@@ -283,7 +264,6 @@ const AboutView = () => (
         Make informed decisions about your solar investment in seconds.
       </p>
     </div>
-
     <div className="bg-white p-4 sm:p-6 md:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-lg">
       <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-4 sm:mb-6">How It Works</h2>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
@@ -310,7 +290,6 @@ const AboutView = () => (
         </div>
       </div>
     </div>
-
     <div className="bg-white p-4 sm:p-6 md:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-lg">
       <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-4 sm:mb-6">Key Features</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
@@ -334,7 +313,6 @@ const AboutView = () => (
         ))}
       </div>
     </div>
-
     <div className="bg-white p-4 sm:p-6 md:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-lg">
       <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-3 sm:mb-4">Data Sources</h2>
       <div className="space-y-2 sm:space-y-3">
@@ -352,7 +330,6 @@ const AboutView = () => (
         </div>
       </div>
     </div>
-
     <div className="bg-gray-900 p-4 sm:p-6 md:p-8 rounded-[2rem] sm:rounded-[2.5rem] text-white text-center">
       <p className="text-gray-400 text-xs sm:text-sm mb-2">Built for Hackathon 2026</p>
       <p className="font-bold text-base sm:text-lg">Built by Axilla</p>
@@ -360,7 +337,6 @@ const AboutView = () => (
     </div>
   </div>
 );
-
 function App() {
   const [activeView, setActiveView] = useState('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -369,7 +345,6 @@ function App() {
     roofArea: '',
     monthlyBill: ''
   });
-  
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
@@ -379,7 +354,6 @@ function App() {
     const saved = localStorage.getItem('solarityHistory');
     return saved ? JSON.parse(saved) : [];
   });
-
   const saveToHistory = (formData, results, locationData) => {
     const newEntry = {
       formData,
@@ -391,55 +365,44 @@ function App() {
     setHistory(updatedHistory);
     localStorage.setItem('solarityHistory', JSON.stringify(updatedHistory));
   };
-
   const loadFromHistory = (item) => {
     setFormData(item.formData);
     setResults(item.results);
     setLocationData(item.locationData);
     setActiveView('home');
   };
-
   const deleteFromHistory = (index) => {
     const updatedHistory = history.filter((_, i) => i !== index);
     setHistory(updatedHistory);
     localStorage.setItem('solarityHistory', JSON.stringify(updatedHistory));
   };
-
   const handleCalculate = async () => {
     setErrors({});
     setErrorMessage('');
-    
     const validationErrors = validateFormData(formData);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-
     setLoading(true);
-    
     try {
       const coordinates = await getCoordinates(formData.location);
       setLocationData(coordinates);
-
       const roofAreaMeters = parseFloat(formData.roofArea) * 0.092903;
       const estimatedCapacity = (roofAreaMeters * 1000 * 0.18) / 1000;
-
       const solarData = await getSolarData(
         coordinates.latitude,
         coordinates.longitude,
         estimatedCapacity,
         20
       );
-
       const stateName = coordinates.placeName.split(',')[1]?.trim() || 'default';
       const electricityRate = getElectricityRate(stateName);
-
       const calculationResults = calculateSolarROI(
         formData,
         solarData,
         electricityRate
       );
-
       setResults(calculationResults);
       saveToHistory(formData, calculationResults, coordinates);
     } catch (error) {
@@ -449,10 +412,8 @@ function App() {
       setLoading(false);
     }
   };
-
   const handleShare = () => {
     const shareText = `Check out my Solarity solar analysis! System Size: ${results.systemSize}kW, Payback: ${results.paybackPeriod} years, Lifetime Savings: ₹${results.lifetimeSavings.toLocaleString()}`;
-    
     if (navigator.share) {
       navigator.share({
         title: 'My Solarity Solar ROI Analysis',
@@ -463,11 +424,9 @@ function App() {
       alert('Results copied to clipboard!');
     }
   };
-
   return (
     <div className="bg-[#f8fafc] min-h-screen font-sans text-gray-800 selection:bg-green-200">
       <Sidebar activeView={activeView} setActiveView={setActiveView} isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
-      
       <main className="md:ml-24 p-4 sm:p-6 md:p-12 max-w-[1600px] mx-auto">
         <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 md:mb-12 gap-4 sm:gap-6">
           <div className="flex items-center gap-3 w-full sm:w-auto">
@@ -484,7 +443,6 @@ function App() {
               <p className="text-gray-400 font-medium text-sm sm:text-base md:text-lg">Know your solar worth instantly</p>
             </div>
           </div>
-          
           <div className="flex items-center gap-4">
             <div className="bg-white px-4 sm:px-5 py-2 rounded-full border border-gray-100 shadow-sm flex items-center gap-2">
               <span className="relative flex h-3 w-3">
@@ -495,19 +453,15 @@ function App() {
             </div>
           </div>
         </header>
-
         {activeView === 'history' && (
           <HistoryView history={history} onLoad={loadFromHistory} onDelete={deleteFromHistory} />
         )}
-
         {activeView === 'compare' && (
           <CompareView history={history} />
         )}
-
         {activeView === 'about' && (
           <AboutView />
         )}
-
         {activeView === 'home' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
             <div className="lg:col-span-4">
@@ -516,21 +470,18 @@ function App() {
                   <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-2">Calculate Your ROI</h2>
                   <p className="text-gray-500 text-xs sm:text-sm">Get instant solar analysis powered by real-time data</p>
                 </div>
-
                 {errorMessage && (
                   <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-red-50 border-2 border-red-200 rounded-xl sm:rounded-2xl flex items-start gap-2 sm:gap-3">
                     <AlertCircle size={18} className="sm:w-5 sm:h-5 text-red-500 flex-shrink-0 mt-0.5" />
                     <p className="text-xs sm:text-sm text-red-700 font-medium">{errorMessage}</p>
                   </div>
                 )}
-
                 <div className="space-y-5 sm:space-y-6">
                   <LocationSearch
                     value={formData.location}
                     onChange={(v) => setFormData({...formData, location: v})}
                     error={errors.location}
                   />
-                  
                   <InputGroup 
                     label="Avg Monthly Bill" 
                     prefix="₹"
@@ -539,7 +490,6 @@ function App() {
                     onChange={(v) => setFormData({...formData, monthlyBill: v})}
                     error={errors.monthlyBill}
                   />
-                  
                   <InputGroup 
                     label="Usable Roof Area" 
                     suffix="sq ft"
@@ -549,7 +499,6 @@ function App() {
                     error={errors.roofArea}
                   />
                 </div>
-
                 <button 
                   onClick={handleCalculate}
                   disabled={loading}
@@ -564,13 +513,11 @@ function App() {
                     <>Calculate ROI <ArrowRight size={20} className="sm:w-[22px] sm:h-[22px]" /></>
                   )}
                 </button>
-                
                 <p className="text-center text-gray-400 text-xs mt-4 sm:mt-6 font-medium">
                   Powered by NREL Solar Data • Real-time Analysis
                 </p>
               </div>
             </div>
-
             <div className="lg:col-span-8">
               {results ? (
                 <div className="space-y-4 sm:space-y-6 animate-fade-in">
@@ -598,11 +545,9 @@ function App() {
                       </div>
                     </div>
                   )}
-
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
                     <div className="md:col-span-2 bg-gradient-to-br from-gray-900 to-gray-800 p-6 sm:p-8 md:p-10 rounded-[2rem] sm:rounded-[2.5rem] flex flex-col justify-between relative overflow-hidden group min-h-[280px] sm:min-h-[320px] text-white shadow-2xl">
                       <div className="absolute right-[-40px] top-[-40px] w-60 h-60 sm:w-80 sm:h-80 bg-green-600 rounded-full blur-[100px] opacity-40 group-hover:opacity-50 transition-opacity duration-700"></div>
-                      
                       <div className="relative z-10">
                         <div className="flex items-center gap-2 text-green-300 font-bold mb-2 sm:mb-3 tracking-widest text-xs uppercase">
                           <IndianRupee size={12} className="sm:w-[14px] sm:h-[14px]" /> Projected Savings
@@ -616,7 +561,6 @@ function App() {
                           {results.percentageOffset}% Bill Offset
                         </div>
                       </div>
-                      
                       <div className="relative z-10 mt-6 sm:mt-8">
                         <div className="flex justify-between text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider">
                           <span>Current Usage</span>
@@ -630,7 +574,6 @@ function App() {
                         </div>
                       </div>
                     </div>
-
                     <div className="bg-[#fff9c2] p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] flex flex-col justify-between relative overflow-hidden group">
                       <div className="absolute -right-10 -bottom-10 w-32 h-32 sm:w-40 sm:h-40 bg-yellow-400 rounded-full blur-3xl opacity-40"></div>
                       <div className="relative z-10">
@@ -644,7 +587,6 @@ function App() {
                       </div>
                     </div>
                   </div>
-
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
                     <MetricCard 
                       icon={TrendingUp} 
@@ -653,7 +595,6 @@ function App() {
                       subtext="Over 25 years"
                       colorClass="bg-green-50"
                     />
-                    
                     <MetricCard 
                       icon={IndianRupee} 
                       label="Net Cost" 
@@ -661,7 +602,6 @@ function App() {
                       subtext={`Subsidy: ₹${(results.federalIncentive / 1000).toFixed(0)}K`}
                       colorClass="bg-white border border-gray-100"
                     />
-                    
                     <MetricCard 
                       icon={Battery} 
                       label="Payback Period" 
@@ -670,19 +610,16 @@ function App() {
                       colorClass="bg-green-50" 
                     />
                   </div>
-
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                     <SavingsChart 
                       data={results.savingsTimeline} 
                       paybackPeriod={results.paybackPeriod}
                     />
-                    
                     <CostBreakdown 
                       systemCost={results.systemCostBefore}
                       subsidy={results.federalIncentive}
                     />
                   </div>
-
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                     <div className="bg-gradient-to-br from-green-600 to-emerald-600 p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] text-white shadow-xl">
                       <div className="p-3 sm:p-4 bg-white/20 w-fit rounded-xl sm:rounded-2xl mb-4 sm:mb-6 backdrop-blur-sm">
@@ -697,7 +634,6 @@ function App() {
                         <p className="text-base sm:text-lg font-black mt-1">{Math.round(results.co2Offset / 4.6)} cars off road/year</p>
                       </div>
                     </div>
-
                     <div className="bg-gradient-to-br from-indigo-600 to-purple-600 p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] text-white shadow-xl flex flex-col justify-center items-center text-center gap-4 sm:gap-6 cursor-pointer group hover:scale-[1.02] transition-all">
                       <div className="p-5 sm:p-6 bg-white/10 rounded-full group-hover:bg-white/20 transition-colors">
                         <User size={30} className="sm:w-9 sm:h-9" />
@@ -730,5 +666,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
