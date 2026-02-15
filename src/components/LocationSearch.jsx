@@ -1,31 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MapPin, Search } from 'lucide-react';
 import { searchLocations } from '../utils/api';
-
 const LocationSearch = ({ value, onChange, error }) => {
   const [suggestions, setSuggestions] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const wrapperRef = useRef(null);
-
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
         setIsOpen(false);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
-
   useEffect(() => {
     const fetchSuggestions = async () => {
       if (value.length < 2) {
         setSuggestions([]);
         return;
       }
-
       setLoading(true);
       try {
         const results = await searchLocations(value);
@@ -37,17 +32,14 @@ const LocationSearch = ({ value, onChange, error }) => {
         setLoading(false);
       }
     };
-
     const timeoutId = setTimeout(fetchSuggestions, 300);
     return () => clearTimeout(timeoutId);
   }, [value]);
-
   const handleSelect = (locationName) => {
     onChange(locationName);
     setIsOpen(false);
     setSuggestions([]);
   };
-
   return (
     <div className="flex flex-col gap-3 relative" ref={wrapperRef}>
       <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">
@@ -74,11 +66,9 @@ const LocationSearch = ({ value, onChange, error }) => {
           </div>
         )}
       </div>
-      
       {error && (
         <p className="text-red-500 text-sm font-medium ml-1">{error}</p>
       )}
-
       {isOpen && suggestions.length > 0 && (
         <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl sm:rounded-2xl shadow-2xl border border-gray-100 overflow-hidden z-50 animate-slide-up max-h-64 overflow-y-auto">
           {suggestions.map((suggestion, index) => (
@@ -96,5 +86,4 @@ const LocationSearch = ({ value, onChange, error }) => {
     </div>
   );
 };
-
 export default LocationSearch;
