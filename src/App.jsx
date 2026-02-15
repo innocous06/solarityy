@@ -331,7 +331,7 @@ const AboutView = () => (
       </div>
     </div>
     <div className="bg-gray-900 p-4 sm:p-6 md:p-8 rounded-[2rem] sm:rounded-[2.5rem] text-white text-center">
-      <p className="text-gray-400 text-xs sm:text-sm mb-2">Built for Hackathon 2026</p>
+      <p className="text-gray-400 text-xs sm:text-sm mb-2">built for NEXGEN TEXUS HACKATHON</p>
       <p className="font-bold text-base sm:text-lg">Built by Axilla</p>
       <p className="text-gray-400 text-xs sm:text-sm mt-1">Domain: EcoTech • Project: Solarity</p>
     </div>
