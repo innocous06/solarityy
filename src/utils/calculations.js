@@ -63,3 +63,23 @@ export const calculateSolarROI = (inputData, solarData, electricityRate = 8.0) =
     solarRadiation: solarData?.solrad_annual?.toFixed(1) || '5.5',
     capacityFactor: solarData?.capacity_factor?.toFixed(1) || '16.5'
   };
+};
+export const validateFormData = (formData) => {
+  const errors = {};
+  if (!formData.location || formData.location.trim() === '') {
+    errors.location = 'Location is required';
+  }
+  const roofArea = parseFloat(formData.roofArea);
+  if (!formData.roofArea || isNaN(roofArea) || roofArea < 100) {
+    errors.roofArea = 'Minimum 100 sq ft required';
+  } else if (roofArea > 10000) {
+    errors.roofArea = 'Maximum 10,000 sq ft allowed';
+  }
+  const monthlyBill = parseFloat(formData.monthlyBill);
+  if (!formData.monthlyBill || isNaN(monthlyBill) || monthlyBill < 100) {
+    errors.monthlyBill = 'Minimum ₹100 required';
+  } else if (monthlyBill > 100000) {
+    errors.monthlyBill = 'Please enter valid amount';
+  }
+  return errors;
+};
