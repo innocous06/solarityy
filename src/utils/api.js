@@ -13,3 +13,26 @@ export const getCoordinates = async (locationQuery) => {
   }
   try {
     const response = await axios.get(
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(locationQuery)}.json`,
+      {
+        params: {
+          access_token: MAPBOX_TOKEN,
+          country: 'IN',
+          limit: 1,
+          types: 'place,locality'
+        }
+      }
+    );
+    if (response.data.features && response.data.features.length > 0) {
+      const [longitude, latitude] = response.data.features[0].center;
+      const placeName = response.data.features[0].place_name;
+      return { latitude, longitude, placeName };
+    }
+    throw new Error('Location not found');
+  } catch (error) {
+    console.error('Geocoding error:', error);
+    throw new Error('Could not find location. Try entering city and state.');
+  }
+};
+export const searchLocations = async (query) => {
+  if (!query || query.length < 2) return [];
