@@ -36,3 +36,25 @@ export const getCoordinates = async (locationQuery) => {
 };
 export const searchLocations = async (query) => {
   if (!query || query.length < 2) return [];
+  if (!MAPBOX_TOKEN || MAPBOX_TOKEN === 'your_mapbox_token_here') {
+    const indianCities = [
+      'Mumbai, Maharashtra',
+      'Delhi, Delhi',
+      'Bangalore, Karnataka',
+      'Hyderabad, Telangana',
+      'Chennai, Tamil Nadu',
+      'Kolkata, West Bengal',
+      'Pune, Maharashtra',
+      'Ahmedabad, Gujarat',
+      'Jaipur, Rajasthan',
+      'Surat, Gujarat'
+    ];
+    return indianCities
+      .filter(city => city.toLowerCase().includes(query.toLowerCase()))
+      .slice(0, 5)
+      .map(city => ({ name: city, id: city }));
+  }
+  try {
+    const response = await axios.get(
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json`,
+      {
