@@ -58,3 +58,21 @@ export const searchLocations = async (query) => {
     const response = await axios.get(
       `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json`,
       {
+        params: {
+          access_token: MAPBOX_TOKEN,
+          country: 'IN',
+          limit: 5,
+          types: 'place,locality'
+        }
+      }
+    );
+    return response.data.features.map(feature => ({
+      name: feature.place_name,
+      id: feature.id
+    }));
+  } catch (error) {
+    console.error('Location search error:', error);
+    return [];
+  }
+};
+export const getSolarData = async (latitude, longitude, systemCapacity, tilt = 20) => {
