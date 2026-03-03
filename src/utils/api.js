@@ -104,3 +104,17 @@ export const getSolarData = async (latitude, longitude, systemCapacity, tilt = 2
     };
   }
 };
+export const getElectricityRate = (state) => {
+  const rates = {
+    'Maharashtra': 9.5,
+    'Delhi': 8.0,
+    'Karnataka': 7.5,
+    'Telangana': 8.5,
+    'Tamil Nadu': 7.0,
+    'West Bengal': 8.0,
+    'Gujarat': 6.5,
+    'Rajasthan': 7.5,
+    'default': 8.0
+  };
+  return rates[state] || rates.default;
+};
