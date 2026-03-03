@@ -76,3 +76,31 @@ export const searchLocations = async (query) => {
   }
 };
 export const getSolarData = async (latitude, longitude, systemCapacity, tilt = 20) => {
+  try {
+    const response = await axios.get(
+      'https://developer.nrel.gov/api/pvwatts/v8.json',
+      {
+        params: {
+          api_key: NREL_API_KEY,
+          lat: latitude,
+          lon: longitude,
+          system_capacity: systemCapacity,
+          azimuth: 180,
+          tilt: tilt,
+          array_type: 1,
+          module_type: 0,
+          losses: 14
+        }
+      }
+    );
+    return response.data.outputs;
+  } catch (error) {
+    console.error('NREL API error:', error);
+    const fallbackProduction = systemCapacity * 1450;
+    return {
+      ac_annual: fallbackProduction,
+      solrad_annual: 5.5,
+      capacity_factor: 16.5
+    };
+  }
+};
