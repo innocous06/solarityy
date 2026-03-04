@@ -23,3 +23,23 @@ const LocationSearch = ({ value, onChange, error }) => {
       }
       setLoading(true);
       try {
+        const results = await searchLocations(value);
+        setSuggestions(results);
+        setIsOpen(true);
+      } catch (error) {
+        console.error('Search error:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    const timeoutId = setTimeout(fetchSuggestions, 300);
+    return () => clearTimeout(timeoutId);
+  }, [value]);
+  const handleSelect = (locationName) => {
+    onChange(locationName);
+    setIsOpen(false);
+    setSuggestions([]);
+  };
+  return (
+    <div className="flex flex-col gap-3 relative" ref={wrapperRef}>
+      <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">
