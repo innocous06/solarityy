@@ -78,3 +78,12 @@ const LocationSearch = ({ value, onChange, error }) => {
               className="w-full px-4 sm:px-5 py-3 sm:py-4 text-left hover:bg-green-50 transition-colors flex items-center gap-3 border-b border-gray-50 last:border-b-0 touch-manipulation"
             >
               <MapPin size={16} className="text-green-500 flex-shrink-0 sm:w-[18px] sm:h-[18px]" />
+              <span className="text-gray-800 font-medium text-sm sm:text-base">{suggestion.name}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+export default LocationSearch;
