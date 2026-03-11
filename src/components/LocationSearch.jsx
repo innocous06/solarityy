@@ -63,3 +63,18 @@ const LocationSearch = ({ value, onChange, error }) => {
         {loading && (
           <div className="absolute right-4 sm:right-5 top-1/2 -translate-y-1/2">
             <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        )}
+      </div>
+      {error && (
+        <p className="text-red-500 text-sm font-medium ml-1">{error}</p>
+      )}
+      {isOpen && suggestions.length > 0 && (
+        <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl sm:rounded-2xl shadow-2xl border border-gray-100 overflow-hidden z-50 animate-slide-up max-h-64 overflow-y-auto">
+          {suggestions.map((suggestion, index) => (
+            <button
+              key={suggestion.id}
+              onClick={() => handleSelect(suggestion.name)}
+              className="w-full px-4 sm:px-5 py-3 sm:py-4 text-left hover:bg-green-50 transition-colors flex items-center gap-3 border-b border-gray-50 last:border-b-0 touch-manipulation"
+            >
+              <MapPin size={16} className="text-green-500 flex-shrink-0 sm:w-[18px] sm:h-[18px]" />
