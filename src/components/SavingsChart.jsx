@@ -23,3 +23,23 @@ const SavingsChart = ({ data, paybackPeriod }) => {
       <div className="mb-4 sm:mb-6">
         <h3 className="text-xl sm:text-2xl font-black text-gray-900 mb-2">Cumulative Savings</h3>
         <p className="text-gray-500 text-xs sm:text-sm">25-year projection with energy cost inflation</p>
+      </div>
+      <ResponsiveContainer width="100%" height={300} className="sm:h-[350px]">
+        <LineChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+          <XAxis 
+            dataKey="year" 
+            label={{ value: 'Years', position: 'insideBottom', offset: -5, fontSize: 12 }}
+            stroke="#9ca3af"
+            tick={{ fontSize: 12 }}
+          />
+          <YAxis 
+            label={{ value: 'Net Savings (₹)', angle: -90, position: 'insideLeft', fontSize: 12 }}
+            stroke="#9ca3af"
+            tick={{ fontSize: 12 }}
+            tickFormatter={(value) => `₹${(value / 100000).toFixed(0)}L`}
+          />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend wrapperStyle={{ fontSize: '14px' }} />
+          <ReferenceLine 
+            y={0} 
