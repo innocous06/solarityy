@@ -43,3 +43,23 @@ const SavingsChart = ({ data, paybackPeriod }) => {
           <Legend wrapperStyle={{ fontSize: '14px' }} />
           <ReferenceLine 
             y={0} 
+            stroke="#ef4444" 
+            strokeDasharray="5 5" 
+            label={{ value: 'Break Even', position: 'insideTopLeft', fill: '#ef4444', fontSize: 11, fontWeight: 'bold' }}
+          />
+          <ReferenceLine 
+            x={parseFloat(paybackPeriod)} 
+            stroke="#f59e0b" 
+            strokeDasharray="5 5"
+            label={{ value: `${paybackPeriod} years`, position: 'top', fill: '#f59e0b', fontSize: 11, fontWeight: 'bold' }}
+          />
+          <Line 
+            type="monotone" 
+            dataKey="cumulativeSavings" 
+            stroke="#16a34a" 
+            strokeWidth={2} 
+            name="Net Savings"
+            dot={false}
+            activeDot={{ r: 6 }}
+          />
+        </LineChart>
