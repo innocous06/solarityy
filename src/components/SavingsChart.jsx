@@ -63,3 +63,16 @@ const SavingsChart = ({ data, paybackPeriod }) => {
             activeDot={{ r: 6 }}
           />
         </LineChart>
+      </ResponsiveContainer>
+      <div className="mt-4 sm:mt-6 grid grid-cols-3 gap-3 sm:gap-4">
+        <div className="text-center p-3 sm:p-4 bg-green-50 rounded-xl sm:rounded-2xl">
+          <p className="text-xs text-gray-500 font-bold uppercase">Break Even</p>
+          <p className="text-xl sm:text-2xl font-black text-green-600">{paybackPeriod} yrs</p>
+        </div>
+        <div className="text-center p-3 sm:p-4 bg-gray-50 rounded-xl sm:rounded-2xl">
+          <p className="text-xs text-gray-500 font-bold uppercase">Year 10</p>
+          <p className="text-xl sm:text-2xl font-black text-gray-800">
+            ₹{data[9]?.cumulativeSavings ? (data[9].cumulativeSavings / 100000).toFixed(1) : '0'}L
+          </p>
+        </div>
+        <div className="text-center p-3 sm:p-4 bg-gray-50 rounded-xl sm:rounded-2xl">
