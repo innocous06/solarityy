@@ -76,3 +76,13 @@ const SavingsChart = ({ data, paybackPeriod }) => {
           </p>
         </div>
         <div className="text-center p-3 sm:p-4 bg-gray-50 rounded-xl sm:rounded-2xl">
+          <p className="text-xs text-gray-500 font-bold uppercase">Year 25</p>
+          <p className="text-xl sm:text-2xl font-black text-gray-800">
+            ₹{data[24]?.cumulativeSavings ? (data[24].cumulativeSavings / 100000).toFixed(1) : '0'}L
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default SavingsChart;
