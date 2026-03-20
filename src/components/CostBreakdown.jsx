@@ -50,3 +50,16 @@ const CostBreakdown = ({ systemCost, subsidy }) => {
             ))}
           </Pie>
           <Tooltip content={<CustomTooltip />} />
+        </PieChart>
+      </ResponsiveContainer>
+      <div className="mt-4 sm:mt-6 space-y-2 sm:space-y-3">
+        {data.map((item, index) => (
+          <div key={index} className="flex items-center justify-between p-2.5 sm:p-3 bg-gray-50 rounded-xl text-sm">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+              <div 
+                className="w-3 h-3 sm:w-4 sm:h-4 rounded-full flex-shrink-0" 
+                style={{ backgroundColor: item.color }}
+              ></div>
+              <span className="font-semibold text-gray-700 text-xs sm:text-sm truncate">{item.name}</span>
+            </div>
+            <span className="font-black text-gray-900 text-xs sm:text-sm ml-2">₹{(item.value / 1000).toFixed(0)}K</span>
