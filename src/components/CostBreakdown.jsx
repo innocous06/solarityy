@@ -36,3 +36,17 @@ const CostBreakdown = ({ systemCost, subsidy }) => {
       <ResponsiveContainer width="100%" height={250} className="sm:h-[300px]">
         <PieChart>
           <Pie
+            data={data}
+            cx="50%"
+            cy="50%"
+            labelLine={false}
+            outerRadius={80}
+            fill="#8884d8"
+            dataKey="value"
+            label={({ name, percent }) => `${(percent * 100).toFixed(0)}%`}
+          >
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={entry.color} />
+            ))}
+          </Pie>
+          <Tooltip content={<CustomTooltip />} />
