@@ -63,3 +63,14 @@ const CostBreakdown = ({ systemCost, subsidy }) => {
               <span className="font-semibold text-gray-700 text-xs sm:text-sm truncate">{item.name}</span>
             </div>
             <span className="font-black text-gray-900 text-xs sm:text-sm ml-2">₹{(item.value / 1000).toFixed(0)}K</span>
+          </div>
+        ))}
+        <div className="flex items-center justify-between p-3 sm:p-4 bg-green-100 rounded-xl border-2 border-green-500 mt-3 sm:mt-4">
+          <span className="text-xs sm:text-sm font-bold text-green-800">Government Subsidy (20%)</span>
+          <span className="text-base sm:text-lg font-black text-green-600">-₹{(subsidy / 1000).toFixed(0)}K</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default CostBreakdown;
