@@ -50,3 +50,29 @@ const Sidebar = ({ activeView, setActiveView, isMobileMenuOpen, setIsMobileMenuO
           className="fixed inset-0 bg-black/50 z-40 md:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         />
+      )}<div className={`fixed top-0 left-0 h-full w-64 bg-white z-50 md:hidden transform transition-transform duration-300 ease-in-out ${
+        isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+      }`}>
+        <div className="p-6">
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-green-50 rounded-xl text-green-600">
+                <Sun size={24} className="fill-green-600" />
+              </div>
+              <span className="text-xl font-black text-gray-900">Solarity</span>
+            </div>
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-2 hover:bg-gray-100 rounded-xl transition"
+            >
+              <X size={24} className="text-gray-600" />
+            </button>
+          </div>
+          <nav className="space-y-2">
+            {menuItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => handleMenuClick(item.id)}
+                className={`w-full flex items-center gap-4 p-4 rounded-xl transition-all ${
+                  activeView === item.id
+                    ? 'bg-green-600 text-white shadow-lg shadow-green-200'
