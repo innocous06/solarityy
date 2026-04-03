@@ -24,3 +24,29 @@ const Sidebar = ({ activeView, setActiveView, isMobileMenuOpen, setIsMobileMenuO
   return (
     <><div className="hidden md:flex flex-col items-center py-8 w-24 bg-white h-screen fixed left-0 top-0 z-10 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
         <div className="p-3 bg-green-50 rounded-2xl mb-12 text-green-600">
+          <Sun size={32} className="fill-green-600" />
+        </div>
+        <div className="flex flex-col gap-8 w-full items-center">
+          {menuItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => setActiveView(item.id)}
+              className={`p-3 rounded-2xl transition-all relative group ${
+                activeView === item.id
+                  ? 'text-white bg-green-600 shadow-lg shadow-green-200'
+                  : 'text-gray-400 hover:text-green-600 hover:bg-green-50'
+              }`}
+              title={item.label}
+            >
+              <item.icon size={24} />
+              <span className="absolute left-full ml-4 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                {item.label}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>{isMobileMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
