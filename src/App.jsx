@@ -76,3 +76,29 @@ const Sidebar = ({ activeView, setActiveView, isMobileMenuOpen, setIsMobileMenuO
                 className={`w-full flex items-center gap-4 p-4 rounded-xl transition-all ${
                   activeView === item.id
                     ? 'bg-green-600 text-white shadow-lg shadow-green-200'
+                    : 'text-gray-600 hover:bg-green-50 hover:text-green-600'
+                }`}
+              >
+                <item.icon size={20} />
+                <span className="font-bold">{item.label}</span>
+              </button>
+            ))}
+          </nav>
+        </div>
+      </div>
+    </>
+  );
+};
+const MetricCard = ({ icon: Icon, label, value, subtext, colorClass }) => (
+  <div className={`p-4 sm:p-6 md:p-6 rounded-[2rem] flex flex-col justify-between transition-all hover:scale-[1.02] duration-300 ${colorClass} min-h-[160px] sm:min-h-[180px] shadow-sm`}>
+    <div className="flex justify-between items-start">
+      <div className="p-2 sm:p-3 bg-white/60 rounded-2xl backdrop-blur-sm">
+        <Icon size={20} className="sm:w-6 sm:h-6 text-gray-800" />
+      </div>
+    </div>
+    <div className="mt-3 sm:mt-4">
+      <h3 className="text-gray-600 text-xs sm:text-sm font-bold mb-1 uppercase tracking-wider opacity-70">{label}</h3>
+      <p className="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">{value}</p>
+      {subtext && <p className="text-xs font-semibold mt-2 opacity-60">{subtext}</p>}
+    </div>
+  </div>
