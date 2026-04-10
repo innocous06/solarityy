@@ -128,3 +128,29 @@ const InputGroup = ({ label, value, onChange, prefix, suffix, type = "number", p
           {suffix}
         </span>
       )}
+    </div>
+    {error && (
+      <p className="text-red-500 text-sm font-medium ml-1">{error}</p>
+    )}
+  </div>
+);
+const HistoryView = ({ history, onLoad, onDelete }) => (
+  <div className="space-y-4 animate-fade-in">
+    <div className="bg-white p-4 sm:p-6 md:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-lg">
+      <h2 className="text-2xl sm:text-3xl font-black text-gray-900 mb-2">Calculation History</h2>
+      <p className="text-gray-500 text-sm sm:text-base mb-4 sm:mb-6">View and manage your previous solar calculations</p>
+      {history.length === 0 ? (
+        <div className="text-center py-8 sm:py-12">
+          <Clock size={40} className="sm:w-12 sm:h-12 text-gray-300 mx-auto mb-3 sm:mb-4" />
+          <p className="text-gray-400 font-medium text-sm sm:text-base">No calculations yet</p>
+          <p className="text-gray-400 text-xs sm:text-sm mt-2">Your calculation history will appear here</p>
+        </div>
+      ) : (
+        <div className="space-y-3 sm:space-y-4">
+          {history.map((item, index) => (
+            <div key={index} className="p-4 sm:p-6 bg-gray-50 rounded-xl sm:rounded-2xl border border-gray-100 hover:border-green-200 transition-all">
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-2">
+                    <MapPin size={14} className="sm:w-4 sm:h-4 text-green-600 flex-shrink-0" />
+                    <h3 className="font-bold text-gray-900 text-sm sm:text-base truncate">{item.formData.location}</h3>
