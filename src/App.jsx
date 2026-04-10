@@ -102,3 +102,29 @@ const MetricCard = ({ icon: Icon, label, value, subtext, colorClass }) => (
       {subtext && <p className="text-xs font-semibold mt-2 opacity-60">{subtext}</p>}
     </div>
   </div>
+);
+const InputGroup = ({ label, value, onChange, prefix, suffix, type = "number", placeholder, error }) => (
+  <div className="flex flex-col gap-3">
+    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">{label}</label>
+    <div className="relative group">
+      {prefix && (
+        <span className="absolute left-4 sm:left-5 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-base sm:text-lg group-focus-within:text-green-500 transition-colors">
+          {prefix}
+        </span>
+      )}
+      <input
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        className={`w-full ${prefix ? 'pl-10 sm:pl-12' : 'pl-4 sm:pl-5'} ${suffix ? 'pr-16 sm:pr-20' : 'pr-4 sm:pr-5'} py-4 sm:py-5 rounded-2xl sm:rounded-3xl border-2 transition-all text-gray-900 font-semibold text-base sm:text-lg placeholder:text-gray-300 placeholder:font-normal focus:scale-[1.01] sm:focus:scale-[1.02] focus:shadow-xl ${
+          error 
+            ? 'border-red-300 bg-red-50 focus:border-red-500' 
+            : 'border-gray-100 bg-white focus:border-green-500 focus:bg-green-50/30'
+        }`}
+      />
+      {suffix && (
+        <span className="absolute right-4 sm:right-5 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-xs sm:text-sm">
+          {suffix}
+        </span>
+      )}
