@@ -154,3 +154,29 @@ const HistoryView = ({ history, onLoad, onDelete }) => (
                   <div className="flex items-center gap-2 mb-2">
                     <MapPin size={14} className="sm:w-4 sm:h-4 text-green-600 flex-shrink-0" />
                     <h3 className="font-bold text-gray-900 text-sm sm:text-base truncate">{item.formData.location}</h3>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 text-xs sm:text-sm">
+                    <div>
+                      <p className="text-gray-500">System Size</p>
+                      <p className="font-bold text-gray-900">{item.results.systemSize} kW</p>
+                    </div>
+                    <div>
+                      <p className="text-gray-500">Payback</p>
+                      <p className="font-bold text-gray-900">{item.results.paybackPeriod} years</p>
+                    </div>
+                    <div className="col-span-2 sm:col-span-1">
+                      <p className="text-gray-500">Annual Savings</p>
+                      <p className="font-bold text-gray-900">₹{item.results.annualSavings.toLocaleString()}</p>
+                    </div>
+                  </div>
+                  <p className="text-xs text-gray-400 mt-2">{item.timestamp}</p>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <button
+                    onClick={() => onLoad(item)}
+                    className="p-2 bg-green-100 hover:bg-green-200 text-green-700 rounded-xl transition touch-manipulation"
+                    title="Load calculation"
+                  >
+                    <ArrowRight size={16} className="sm:w-[18px] sm:h-[18px]" />
+                  </button>
+                  <button
