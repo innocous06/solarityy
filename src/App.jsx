@@ -180,3 +180,29 @@ const HistoryView = ({ history, onLoad, onDelete }) => (
                     <ArrowRight size={16} className="sm:w-[18px] sm:h-[18px]" />
                   </button>
                   <button
+                    onClick={() => onDelete(index)}
+                    className="p-2 bg-red-100 hover:bg-red-200 text-red-700 rounded-xl transition touch-manipulation"
+                    title="Delete"
+                  >
+                    <Trash2 size={16} className="sm:w-[18px] sm:h-[18px]" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+);
+const CompareView = ({ history }) => (
+  <div className="space-y-4 animate-fade-in">
+    <div className="bg-white p-4 sm:p-6 md:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-lg">
+      <h2 className="text-2xl sm:text-3xl font-black text-gray-900 mb-2">Compare Calculations</h2>
+      <p className="text-gray-500 text-sm sm:text-base mb-4 sm:mb-6">Side-by-side comparison of your solar analyses</p>
+      {history.length < 2 ? (
+        <div className="text-center py-8 sm:py-12">
+          <BarChart3 size={40} className="sm:w-12 sm:h-12 text-gray-300 mx-auto mb-3 sm:mb-4" />
+          <p className="text-gray-400 font-medium text-sm sm:text-base">Need at least 2 calculations to compare</p>
+          <p className="text-gray-400 text-xs sm:text-sm mt-2">Calculate for different locations to compare results</p>
+        </div>
