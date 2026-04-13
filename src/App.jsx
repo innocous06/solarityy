@@ -206,3 +206,29 @@ const CompareView = ({ history }) => (
           <p className="text-gray-400 font-medium text-sm sm:text-base">Need at least 2 calculations to compare</p>
           <p className="text-gray-400 text-xs sm:text-sm mt-2">Calculate for different locations to compare results</p>
         </div>
+      ) : (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+          {history.slice(-2).map((item, index) => (
+            <div key={index} className="p-4 sm:p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl sm:rounded-2xl border-2 border-green-200">
+              <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                <MapPin size={16} className="sm:w-[18px] sm:h-[18px] text-green-600 flex-shrink-0" />
+                <h3 className="font-bold text-gray-900 text-base sm:text-lg truncate">{item.formData.location}</h3>
+              </div>
+              <div className="space-y-2 sm:space-y-3">
+                <div className="flex justify-between items-center p-2.5 sm:p-3 bg-white rounded-xl">
+                  <span className="text-xs sm:text-sm text-gray-600">System Size</span>
+                  <span className="font-bold text-gray-900 text-sm sm:text-base">{item.results.systemSize} kW</span>
+                </div>
+                <div className="flex justify-between items-center p-2.5 sm:p-3 bg-white rounded-xl">
+                  <span className="text-xs sm:text-sm text-gray-600">Net Cost</span>
+                  <span className="font-bold text-gray-900 text-sm sm:text-base">₹{(item.results.netCost / 100000).toFixed(1)}L</span>
+                </div>
+                <div className="flex justify-between items-center p-2.5 sm:p-3 bg-white rounded-xl">
+                  <span className="text-xs sm:text-sm text-gray-600">Payback Period</span>
+                  <span className="font-bold text-gray-900 text-sm sm:text-base">{item.results.paybackPeriod} years</span>
+                </div>
+                <div className="flex justify-between items-center p-2.5 sm:p-3 bg-white rounded-xl">
+                  <span className="text-xs sm:text-sm text-gray-600">Annual Savings</span>
+                  <span className="font-bold text-green-600 text-sm sm:text-base">₹{item.results.annualSavings.toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between items-center p-2.5 sm:p-3 bg-white rounded-xl">
