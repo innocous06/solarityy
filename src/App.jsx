@@ -232,3 +232,29 @@ const CompareView = ({ history }) => (
                   <span className="font-bold text-green-600 text-sm sm:text-base">₹{item.results.annualSavings.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between items-center p-2.5 sm:p-3 bg-white rounded-xl">
+                  <span className="text-xs sm:text-sm text-gray-600">Lifetime Savings</span>
+                  <span className="font-bold text-green-600 text-sm sm:text-base">₹{(item.results.lifetimeSavings / 100000).toFixed(1)}L</span>
+                </div>
+                <div className="flex justify-between items-center p-2.5 sm:p-3 bg-white rounded-xl">
+                  <span className="text-xs sm:text-sm text-gray-600">CO₂ Offset</span>
+                  <span className="font-bold text-green-600 text-sm sm:text-base">{item.results.co2Offset} tons</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+);
+const AboutView = () => (
+  <div className="space-y-4 sm:space-y-6 animate-fade-in">
+    <div className="bg-gradient-to-br from-green-600 to-emerald-600 p-6 sm:p-8 md:p-12 rounded-[2rem] sm:rounded-[2.5rem] text-white shadow-xl">
+      <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+        <div className="p-3 sm:p-4 bg-white/20 rounded-xl sm:rounded-2xl backdrop-blur-sm">
+          <Sun size={36} className="sm:w-12 sm:h-12 fill-white" />
+        </div>
+        <div>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black">Solarity</h1>
+          <p className="text-green-100 text-sm sm:text-base md:text-lg mt-1 sm:mt-2">Solar Decisions Made Simple</p>
+        </div>
