@@ -258,3 +258,29 @@ const AboutView = () => (
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black">Solarity</h1>
           <p className="text-green-100 text-sm sm:text-base md:text-lg mt-1 sm:mt-2">Solar Decisions Made Simple</p>
         </div>
+      </div>
+      <p className="text-green-50 text-sm sm:text-base md:text-lg leading-relaxed">
+        Instant, accurate solar ROI calculations powered by real-time NREL solar radiation data. 
+        Make informed decisions about your solar investment in seconds.
+      </p>
+    </div>
+    <div className="bg-white p-4 sm:p-6 md:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-lg">
+      <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-4 sm:mb-6">How It Works</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+        <div className="text-center p-4 sm:p-6">
+          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+            <span className="text-xl sm:text-2xl font-black text-green-600">1</span>
+          </div>
+          <h3 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Enter Details</h3>
+          <p className="text-xs sm:text-sm text-gray-600">Provide your location, roof area, and monthly electricity bill</p>
+        </div>
+        <div className="text-center p-4 sm:p-6">
+          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+            <span className="text-xl sm:text-2xl font-black text-green-600">2</span>
+          </div>
+          <h3 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Real-time Analysis</h3>
+          <p className="text-xs sm:text-sm text-gray-600">We fetch location-specific solar data and calculate your ROI</p>
+        </div>
+        <div className="text-center p-4 sm:p-6">
+          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+            <span className="text-xl sm:text-2xl font-black text-green-600">3</span>
