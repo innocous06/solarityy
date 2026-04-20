@@ -310,3 +310,29 @@ const AboutView = () => (
               <p className="text-xs sm:text-sm text-gray-600">{feature.desc}</p>
             </div>
           </div>
+        ))}
+      </div>
+    </div>
+    <div className="bg-white p-4 sm:p-6 md:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-lg">
+      <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-3 sm:mb-4">Data Sources</h2>
+      <div className="space-y-2 sm:space-y-3">
+        <div className="p-3 sm:p-4 bg-gray-50 rounded-xl">
+          <h3 className="font-bold text-gray-900 mb-1 text-sm sm:text-base">NREL PVWatts API</h3>
+          <p className="text-xs sm:text-sm text-gray-600">National Renewable Energy Laboratory solar radiation database</p>
+        </div>
+        <div className="p-3 sm:p-4 bg-gray-50 rounded-xl">
+          <h3 className="font-bold text-gray-900 mb-1 text-sm sm:text-base">Indian Market Data</h3>
+          <p className="text-xs sm:text-sm text-gray-600">Current solar panel costs, installation rates, and government subsidies (2026)</p>
+        </div>
+        <div className="p-3 sm:p-4 bg-gray-50 rounded-xl">
+          <h3 className="font-bold text-gray-900 mb-1 text-sm sm:text-base">Regional Electricity Rates</h3>
+          <p className="text-xs sm:text-sm text-gray-600">State-wise electricity tariffs for accurate savings calculations</p>
+        </div>
+      </div>
+    </div>
+    <div className="bg-gray-900 p-4 sm:p-6 md:p-8 rounded-[2rem] sm:rounded-[2.5rem] text-white text-center">
+      <p className="text-gray-400 text-xs sm:text-sm mb-2">built for NEXGEN TEXUS HACKATHON</p>
+      <p className="font-bold text-base sm:text-lg">Built by Axilla</p>
+      <p className="text-gray-400 text-xs sm:text-sm mt-1">Domain: EcoTech • Project: Solarity</p>
+    </div>
+  </div>
