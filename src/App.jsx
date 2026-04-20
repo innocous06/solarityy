@@ -284,3 +284,29 @@ const AboutView = () => (
         <div className="text-center p-4 sm:p-6">
           <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
             <span className="text-xl sm:text-2xl font-black text-green-600">3</span>
+          </div>
+          <h3 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Get Results</h3>
+          <p className="text-xs sm:text-sm text-gray-600">Instant system sizing, cost, savings, and payback analysis</p>
+        </div>
+      </div>
+    </div>
+    <div className="bg-white p-4 sm:p-6 md:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-lg">
+      <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-4 sm:mb-6">Key Features</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+        {[
+          { icon: Zap, title: 'Real-time Data', desc: 'NREL PVWatts API integration' },
+          { icon: MapPin, title: 'Location-specific', desc: 'Accurate solar radiation data' },
+          { icon: IndianRupee, title: 'Cost Analysis', desc: 'Complete financial breakdown' },
+          { icon: Leaf, title: 'Environmental Impact', desc: 'CO₂ offset calculations' },
+          { icon: TrendingUp, title: '25-year Projection', desc: 'Lifetime savings timeline' },
+          { icon: CheckCircle2, title: 'Instant Results', desc: 'No signup required' },
+        ].map((feature, index) => (
+          <div key={index} className="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 bg-gray-50 rounded-xl hover:bg-green-50 transition-colors">
+            <div className="p-2 sm:p-3 bg-green-100 rounded-xl flex-shrink-0">
+              <feature.icon size={20} className="sm:w-6 sm:h-6 text-green-600" />
+            </div>
+            <div>
+              <h3 className="font-bold text-gray-900 text-sm sm:text-base">{feature.title}</h3>
+              <p className="text-xs sm:text-sm text-gray-600">{feature.desc}</p>
+            </div>
+          </div>
