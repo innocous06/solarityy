@@ -336,3 +336,29 @@ const AboutView = () => (
       <p className="text-gray-400 text-xs sm:text-sm mt-1">Domain: EcoTech • Project: Solarity</p>
     </div>
   </div>
+);
+function App() {
+  const [activeView, setActiveView] = useState('home');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    location: '',
+    roofArea: '',
+    monthlyBill: ''
+  });
+  const [results, setResults] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [locationData, setLocationData] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [history, setHistory] = useState(() => {
+    const saved = localStorage.getItem('solarityHistory');
+    return saved ? JSON.parse(saved) : [];
+  });
+  const saveToHistory = (formData, results, locationData) => {
+    const newEntry = {
+      formData,
+      results,
+      locationData,
+      timestamp: new Date().toLocaleString()
+    };
+    const updatedHistory = [newEntry, ...history].slice(0, 10);
