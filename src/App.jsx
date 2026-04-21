@@ -362,3 +362,29 @@ function App() {
       timestamp: new Date().toLocaleString()
     };
     const updatedHistory = [newEntry, ...history].slice(0, 10);
+    setHistory(updatedHistory);
+    localStorage.setItem('solarityHistory', JSON.stringify(updatedHistory));
+  };
+  const loadFromHistory = (item) => {
+    setFormData(item.formData);
+    setResults(item.results);
+    setLocationData(item.locationData);
+    setActiveView('home');
+  };
+  const deleteFromHistory = (index) => {
+    const updatedHistory = history.filter((_, i) => i !== index);
+    setHistory(updatedHistory);
+    localStorage.setItem('solarityHistory', JSON.stringify(updatedHistory));
+  };
+  const handleCalculate = async () => {
+    setErrors({});
+    setErrorMessage('');
+    const validationErrors = validateFormData(formData);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    setLoading(true);
+    try {
+      const coordinates = await getCoordinates(formData.location);
+      setLocationData(coordinates);
