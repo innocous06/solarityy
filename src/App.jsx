@@ -388,3 +388,29 @@ function App() {
     try {
       const coordinates = await getCoordinates(formData.location);
       setLocationData(coordinates);
+      const roofAreaMeters = parseFloat(formData.roofArea) * 0.092903;
+      const estimatedCapacity = (roofAreaMeters * 1000 * 0.18) / 1000;
+      const solarData = await getSolarData(
+        coordinates.latitude,
+        coordinates.longitude,
+        estimatedCapacity,
+        20
+      );
+      const stateName = coordinates.placeName.split(',')[1]?.trim() || 'default';
+      const electricityRate = getElectricityRate(stateName);
+      const calculationResults = calculateSolarROI(
+        formData,
+        solarData,
+        electricityRate
+      );
+      setResults(calculationResults);
+      saveToHistory(formData, calculationResults, coordinates);
+    } catch (error) {
+      console.error('Calculation error:', error);
+      setErrorMessage(error.message || 'Calculation failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+  const handleShare = () => {
+    const shareText = `Check out my Solarity solar analysis! System Size: ${results.systemSize}kW, Payback: ${results.paybackPeriod} years, Lifetime Savings: ₹${results.lifetimeSavings.toLocaleString()}`;
