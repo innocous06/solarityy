@@ -414,3 +414,29 @@ function App() {
   };
   const handleShare = () => {
     const shareText = `Check out my Solarity solar analysis! System Size: ${results.systemSize}kW, Payback: ${results.paybackPeriod} years, Lifetime Savings: ₹${results.lifetimeSavings.toLocaleString()}`;
+    if (navigator.share) {
+      navigator.share({
+        title: 'My Solarity Solar ROI Analysis',
+        text: shareText,
+      }).catch(err => console.log('Share failed:', err));
+    } else {
+      navigator.clipboard.writeText(shareText);
+      alert('Results copied to clipboard!');
+    }
+  };
+  return (
+    <div className="bg-[#f8fafc] min-h-screen font-sans text-gray-800 selection:bg-green-200">
+      <Sidebar activeView={activeView} setActiveView={setActiveView} isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
+      <main className="md:ml-24 p-4 sm:p-6 md:p-12 max-w-[1600px] mx-auto">
+        <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 md:mb-12 gap-4 sm:gap-6">
+          <div className="flex items-center gap-3 w-full sm:w-auto">
+            <button 
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="md:hidden p-2 hover:bg-white rounded-xl transition touch-manipulation"
+            >
+              <Menu size={24} className="text-gray-600" />
+            </button>
+            <div>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 tracking-tighter mb-1 sm:mb-2">
+                Solarity<span className="text-green-600">.</span>
+              </h1>
