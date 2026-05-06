@@ -466,3 +466,29 @@ function App() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
             <div className="lg:col-span-4">
               <div className="bg-white p-4 sm:p-6 md:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-lg lg:sticky lg:top-8">
+                <div className="mb-6 sm:mb-8">
+                  <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-2">Calculate Your ROI</h2>
+                  <p className="text-gray-500 text-xs sm:text-sm">Get instant solar analysis powered by real-time data</p>
+                </div>
+                {errorMessage && (
+                  <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-red-50 border-2 border-red-200 rounded-xl sm:rounded-2xl flex items-start gap-2 sm:gap-3">
+                    <AlertCircle size={18} className="sm:w-5 sm:h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                    <p className="text-xs sm:text-sm text-red-700 font-medium">{errorMessage}</p>
+                  </div>
+                )}
+                <div className="space-y-5 sm:space-y-6">
+                  <LocationSearch
+                    value={formData.location}
+                    onChange={(v) => setFormData({...formData, location: v})}
+                    error={errors.location}
+                  />
+                  <InputGroup 
+                    label="Avg Monthly Bill" 
+                    prefix="₹"
+                    placeholder="3000"
+                    value={formData.monthlyBill}
+                    onChange={(v) => setFormData({...formData, monthlyBill: v})}
+                    error={errors.monthlyBill}
+                  />
+                  <InputGroup 
+                    label="Usable Roof Area" 
