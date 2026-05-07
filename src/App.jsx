@@ -492,3 +492,29 @@ function App() {
                   />
                   <InputGroup 
                     label="Usable Roof Area" 
+                    suffix="sq ft"
+                    placeholder="1200"
+                    value={formData.roofArea}
+                    onChange={(v) => setFormData({...formData, roofArea: v})}
+                    error={errors.roofArea}
+                  />
+                </div>
+                <button 
+                  onClick={handleCalculate}
+                  disabled={loading}
+                  className="w-full mt-6 sm:mt-8 bg-green-600 hover:bg-green-700 text-white font-bold text-lg sm:text-xl py-4 sm:py-5 md:py-6 rounded-[1.5rem] sm:rounded-[2rem] transition-all active:scale-95 hover:shadow-xl hover:shadow-green-200 flex items-center justify-center gap-2 sm:gap-3 disabled:opacity-70 disabled:cursor-not-allowed touch-manipulation"
+                >
+                  {loading ? (
+                    <div className="flex items-center gap-2">
+                      <Loader2 size={20} className="sm:w-[22px] sm:h-[22px] animate-spin" />
+                      <span>Analyzing...</span>
+                    </div>
+                  ) : (
+                    <>Calculate ROI <ArrowRight size={20} className="sm:w-[22px] sm:h-[22px]" /></>
+                  )}
+                </button>
+                <p className="text-center text-gray-400 text-xs mt-4 sm:mt-6 font-medium">
+                  Powered by NREL Solar Data • Real-time Analysis
+                </p>
+              </div>
+            </div>
