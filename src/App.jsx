@@ -544,3 +544,29 @@ function App() {
                         </div>
                       </div>
                     </div>
+                  )}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+                    <div className="md:col-span-2 bg-gradient-to-br from-gray-900 to-gray-800 p-6 sm:p-8 md:p-10 rounded-[2rem] sm:rounded-[2.5rem] flex flex-col justify-between relative overflow-hidden group min-h-[280px] sm:min-h-[320px] text-white shadow-2xl">
+                      <div className="absolute right-[-40px] top-[-40px] w-60 h-60 sm:w-80 sm:h-80 bg-green-600 rounded-full blur-[100px] opacity-40 group-hover:opacity-50 transition-opacity duration-700"></div>
+                      <div className="relative z-10">
+                        <div className="flex items-center gap-2 text-green-300 font-bold mb-2 sm:mb-3 tracking-widest text-xs uppercase">
+                          <IndianRupee size={12} className="sm:w-[14px] sm:h-[14px]" /> Projected Savings
+                        </div>
+                        <div className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter mb-1">
+                          ₹{results.annualSavings.toLocaleString()}
+                          <span className="text-lg sm:text-xl md:text-2xl text-gray-400 font-medium ml-2">/yr</span>
+                        </div>
+                        <div className="mt-3 sm:mt-4 inline-flex items-center gap-2 text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full backdrop-blur-md text-xs sm:text-sm font-bold">
+                          <CheckCircle2 size={14} className="sm:w-4 sm:h-4" />
+                          {results.percentageOffset}% Bill Offset
+                        </div>
+                      </div>
+                      <div className="relative z-10 mt-6 sm:mt-8">
+                        <div className="flex justify-between text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider">
+                          <span>Current Usage</span>
+                          <span>Solar Coverage</span>
+                        </div>
+                        <div className="h-2.5 sm:h-3 w-full bg-gray-700 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full transition-all duration-1000 ease-out" 
+                            style={{ width: `${Math.min(results.percentageOffset, 100)}%` }}
