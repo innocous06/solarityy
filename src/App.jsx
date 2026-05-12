@@ -518,3 +518,29 @@ function App() {
                 </p>
               </div>
             </div>
+            <div className="lg:col-span-8">
+              {results ? (
+                <div className="space-y-4 sm:space-y-6 animate-fade-in">
+                  {locationData && (
+                    <div className="bg-gradient-to-r from-green-600 to-emerald-600 p-4 sm:p-5 md:p-6 rounded-[1.5rem] sm:rounded-[2rem] text-white shadow-lg">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+                        <div className="flex-1 min-w-0">
+                          <p className="text-green-100 text-xs sm:text-sm font-bold mb-1">Analysis Location</p>
+                          <p className="text-lg sm:text-xl md:text-2xl font-black truncate">{locationData.placeName}</p>
+                          <p className="text-green-100 text-xs sm:text-sm mt-1">
+                            Solar Radiation: {results.solarRadiation} kWh/m²/day • Capacity Factor: {results.capacityFactor}%
+                          </p>
+                        </div>
+                        <div className="flex gap-2 sm:gap-3">
+                          <button 
+                            onClick={handleShare}
+                            className="p-2 sm:p-3 bg-white/20 hover:bg-white/30 rounded-xl transition touch-manipulation"
+                          >
+                            <Share2 size={18} className="sm:w-5 sm:h-5" />
+                          </button>
+                          <button className="p-2 sm:p-3 bg-white/20 hover:bg-white/30 rounded-xl transition touch-manipulation">
+                            <Download size={18} className="sm:w-5 sm:h-5" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
