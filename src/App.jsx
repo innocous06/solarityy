@@ -596,3 +596,29 @@ function App() {
                       colorClass="bg-green-50"
                     />
                     <MetricCard 
+                      icon={IndianRupee} 
+                      label="Net Cost" 
+                      value={`₹${(results.netCost / 100000).toFixed(1)}L`} 
+                      subtext={`Subsidy: ₹${(results.federalIncentive / 1000).toFixed(0)}K`}
+                      colorClass="bg-white border border-gray-100"
+                    />
+                    <MetricCard 
+                      icon={Battery} 
+                      label="Payback Period" 
+                      value={`${results.paybackPeriod} Yrs`} 
+                      subtext="Break-even Point"
+                      colorClass="bg-green-50" 
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                    <SavingsChart 
+                      data={results.savingsTimeline} 
+                      paybackPeriod={results.paybackPeriod}
+                    />
+                    <CostBreakdown 
+                      systemCost={results.systemCostBefore}
+                      subsidy={results.federalIncentive}
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                    <div className="bg-gradient-to-br from-green-600 to-emerald-600 p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] text-white shadow-xl">
