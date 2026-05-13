@@ -570,3 +570,29 @@ function App() {
                           <div 
                             className="h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full transition-all duration-1000 ease-out" 
                             style={{ width: `${Math.min(results.percentageOffset, 100)}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-[#fff9c2] p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] flex flex-col justify-between relative overflow-hidden group">
+                      <div className="absolute -right-10 -bottom-10 w-32 h-32 sm:w-40 sm:h-40 bg-yellow-400 rounded-full blur-3xl opacity-40"></div>
+                      <div className="relative z-10">
+                        <div className="p-3 sm:p-4 bg-white/60 w-fit rounded-xl sm:rounded-2xl mb-4 sm:mb-6 backdrop-blur-sm">
+                          <Sun size={24} className="sm:w-7 sm:h-7 text-yellow-700" />
+                        </div>
+                        <h3 className="text-gray-600 text-xs sm:text-sm font-bold mb-1 uppercase tracking-wider opacity-70">System Size</h3>
+                        <p className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-1">{results.systemSize} kW</p>
+                        <p className="text-xs sm:text-sm font-semibold text-gray-600">{results.panelCount} Solar Panels</p>
+                        <p className="text-xs font-semibold mt-3 sm:mt-4 opacity-60">{results.annualProduction.toLocaleString()} kWh/year</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+                    <MetricCard 
+                      icon={TrendingUp} 
+                      label="Lifetime Savings" 
+                      value={`₹${(results.lifetimeSavings / 100000).toFixed(1)}L`} 
+                      subtext="Over 25 years"
+                      colorClass="bg-green-50"
+                    />
+                    <MetricCard 
