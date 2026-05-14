@@ -622,3 +622,48 @@ function App() {
                   </div>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                     <div className="bg-gradient-to-br from-green-600 to-emerald-600 p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] text-white shadow-xl">
+                      <div className="p-3 sm:p-4 bg-white/20 w-fit rounded-xl sm:rounded-2xl mb-4 sm:mb-6 backdrop-blur-sm">
+                        <Leaf size={24} className="sm:w-7 sm:h-7" />
+                      </div>
+                      <h3 className="text-green-100 text-xs sm:text-sm font-bold mb-2 uppercase tracking-wider">Environmental Impact</h3>
+                      <p className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">{results.co2Offset} tons</p>
+                      <p className="text-green-100 text-xs sm:text-sm">CO₂ offset over 25 years</p>
+                      <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-white/20">
+                        <p className="text-xs sm:text-sm font-semibold text-green-100">Equivalent to:</p>
+                        <p className="text-base sm:text-lg font-black mt-2">{(results.co2Offset * 16).toFixed(0)} trees planted</p>
+                        <p className="text-base sm:text-lg font-black mt-1">{Math.round(results.co2Offset / 4.6)} cars off road/year</p>
+                      </div>
+                    </div>
+                    <div className="bg-gradient-to-br from-indigo-600 to-purple-600 p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] text-white shadow-xl flex flex-col justify-center items-center text-center gap-4 sm:gap-6 cursor-pointer group hover:scale-[1.02] transition-all">
+                      <div className="p-5 sm:p-6 bg-white/10 rounded-full group-hover:bg-white/20 transition-colors">
+                        <User size={30} className="sm:w-9 sm:h-9" />
+                      </div>
+                      <div>
+                        <h3 className="font-black text-xl sm:text-2xl leading-tight mb-2">Connect with Installers</h3>
+                        <p className="text-indigo-200 text-xs sm:text-sm">Get verified quotes from certified solar installers</p>
+                      </div>
+                      <button className="bg-white text-indigo-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:bg-indigo-50 transition-colors flex items-center gap-2 text-sm sm:text-base touch-manipulation">
+                        Get Quotes <ArrowRight size={16} className="sm:w-[18px] sm:h-[18px]" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="h-full w-full bg-white rounded-[2rem] sm:rounded-[2.5rem] border-2 border-dashed border-gray-200 flex flex-col items-center justify-center text-gray-400 p-8 sm:p-12 text-center group min-h-[400px] sm:min-h-[600px]">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 bg-green-50 rounded-full flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
+                    <Sun size={32} className="sm:w-10 sm:h-10 text-green-400" />
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Ready to Go Solar?</h3>
+                  <p className="text-gray-400 max-w-sm mx-auto leading-relaxed text-sm sm:text-base">
+                    Enter your details to unlock your <span className="text-green-500 font-bold">instant solar worth</span> analysis with real-time data.
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </main>
+    </div>
+  );
+}
+export default App;
